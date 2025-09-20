@@ -51,7 +51,6 @@ class _RunMyAppState extends State<RunMyApp> {
 
           body: AnimatedContainer(
             duration: Duration(milliseconds: 500),
-            color: darkMode ? darkModeBackground : lightModeBackground,
 
             child: TabBarView(
               children: [
@@ -63,6 +62,7 @@ class _RunMyAppState extends State<RunMyApp> {
                       style: TextStyle(fontSize: 18),
                     ),
 
+                    /*
                     // add some extra spacing
                     Text(' ', style: TextStyle(fontSize: 9)),
 
@@ -88,6 +88,7 @@ class _RunMyAppState extends State<RunMyApp> {
                         ),
                       ),
                     ),
+                    */
                   ],
                 ),
 
