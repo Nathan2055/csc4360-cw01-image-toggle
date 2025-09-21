@@ -1,0 +1,13 @@
+Cat image:
+- URL: https://commons.wikimedia.org/wiki/File:Sheba1.JPG
+- Date: 19 January 2007
+- Author: Dovenetel on the Dutch Wikipedia
+- License: Public domain; no restrictions on usage
+- Image cropped to 500x600 size by Nathan Larsen
+
+Dog image:
+- URL: https://commons.wikimedia.org/wiki/File:Kintamani_dog_white.jpg
+- Date: 14 August 2007
+- Author: Imk0278 on the English Wikipedia
+- License: Public domain; no restrictions on usage
+- Image cropped to 500x600 size by Nathan Larsen
