@@ -91,13 +91,15 @@ class _RunMyAppState extends State<RunMyApp> {
 
 // Main method
 void main() {
-  runApp(MaterialApp(home: myApp()));
+  runApp(myApp());
 }
 
 // App constructor
 class myApp extends StatefulWidget {
+  const myApp({super.key});
+
   @override
-  _myAppState createState() => _myAppState();
+  State<myApp> createState() => _myAppState();
 }
 
 class _myAppState extends State<myApp> {
@@ -120,17 +122,28 @@ class _myAppState extends State<myApp> {
   // Interface constructor
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My App'),
-        bottom: const TabBar(
-          tabs: [
-            Tab(icon: Icon(Icons.home)),
-            Tab(icon: Icon(Icons.settings)),
-          ],
+    return MaterialApp(
+      // Theme settings
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: _themeMode,
+      debugShowCheckedModeBanner: false,
+
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('My App'),
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.home)),
+                Tab(icon: Icon(Icons.settings)),
+              ],
+            ),
+          ),
+          body: Center(child: getMainInterface()),
         ),
       ),
-      body: Center(child: getMainInterface()),
     );
   }
 
