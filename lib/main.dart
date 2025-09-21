@@ -82,7 +82,10 @@ class _myAppState extends State<myApp> {
         SizedBox(height: 8.0),
         Text('$counterCount', style: TextStyle(fontSize: 20.0)),
         SizedBox(height: 8.0),
-        ElevatedButton(onPressed: _incrementCounter, child: Text('Click Here')),
+        ElevatedButton(
+          onPressed: _incrementCounter,
+          child: Text('Push The Button!'),
+        ),
       ],
     );
   }
