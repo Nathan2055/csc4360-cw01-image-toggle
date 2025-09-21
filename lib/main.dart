@@ -62,6 +62,27 @@ class _myAppState extends State<myApp> {
     });
   }
 
+  // Get the currently selected image
+  Image getImage() {
+    double scaleFactor = 2.5; // resize images down by this factor
+    double imageWidth = 500.0 / scaleFactor;
+    double imageHeight = 600.0 / scaleFactor;
+
+    if (toggleImageState) {
+      return Image.asset(
+        'images/dog-500x600.jpg',
+        width: imageWidth,
+        height: imageHeight,
+      );
+    } else {
+      return Image.asset(
+        'images/cat-500x600.jpg',
+        width: imageWidth,
+        height: imageHeight,
+      );
+    }
+  }
+
   // Interface constructor
   @override
   Widget build(BuildContext context) {
@@ -122,9 +143,11 @@ class _myAppState extends State<myApp> {
           'Image toggle interface will go here',
           style: TextStyle(fontSize: 16),
         ),
-        SizedBox(height: 8.0),
+        SizedBox(height: 16.0),
+        getImage(),
+        SizedBox(height: 16.0),
         ElevatedButton(onPressed: _toggleImage, child: Text('Switch Image')),
-        SizedBox(height: 8.0),
+        SizedBox(height: 16.0),
         ElevatedButton(
           onPressed: _changeTheme,
           child: Text('Switch App Theme'),
