@@ -24,6 +24,9 @@ class _myAppState extends State<myApp> {
   // Counter variable
   int counterCount = 0;
 
+  // Image toggle variable
+  bool toggleImageState = false;
+
   // State constructor
   @override
   void initState() {
@@ -49,6 +52,13 @@ class _myAppState extends State<myApp> {
       // if on, switch to light mode; if off, switch to dark mode
       _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
       darkMode = !darkMode;
+    });
+  }
+
+  // Toggle the displayed image on the image toggle interface tab
+  void _toggleImage() {
+    setState(() {
+      toggleImageState = !toggleImageState;
     });
   }
 
@@ -111,6 +121,13 @@ class _myAppState extends State<myApp> {
         Text(
           'Image toggle interface will go here',
           style: TextStyle(fontSize: 16),
+        ),
+        SizedBox(height: 8.0),
+        ElevatedButton(onPressed: _toggleImage, child: Text('Switch Image')),
+        SizedBox(height: 8.0),
+        ElevatedButton(
+          onPressed: _changeTheme,
+          child: Text('Switch App Theme'),
         ),
       ],
     );
