@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'dart:async';
-//import 'dart:math';
-//import 'package:collection/collection.dart';
 
 // Main method
 void main() {
@@ -93,32 +90,19 @@ class _myAppState extends State<myApp> {
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
 
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('My App'),
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.home)),
-                Tab(icon: Icon(Icons.image)),
-                Tab(icon: Icon(Icons.settings)),
-              ],
-            ),
-          ),
-          body: Center(
-            child: TabBarView(children: [homeTab(), imageTab(), settingsTab()]),
-          ),
-        ),
+      home: Scaffold(
+        appBar: AppBar(title: Text('My App')),
+        body: Center(child: homeTab()),
       ),
     );
   }
 
-  // Tab for Part 1: Counter
+  // Main interface
   Column homeTab() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // Part 1: Counter
         Text(
           'You have pushed the button this many times:',
           style: TextStyle(fontSize: 16),
@@ -130,45 +114,16 @@ class _myAppState extends State<myApp> {
           onPressed: _incrementCounter,
           child: Text('Push The Button!'),
         ),
-      ],
-    );
-  }
+        SizedBox(height: 8.0),
 
-  // Tab for Part 2: Image Toggle
-  Column imageTab() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Image toggle interface will go here',
-          style: TextStyle(fontSize: 16),
-        ),
-        SizedBox(height: 16.0),
+        // Part 2: Image Toggle
         getImage(),
-        SizedBox(height: 16.0),
+        SizedBox(height: 8.0),
         ElevatedButton(onPressed: _toggleImage, child: Text('Switch Image')),
-        SizedBox(height: 16.0),
+        SizedBox(height: 8.0),
         ElevatedButton(
           onPressed: _changeTheme,
           child: Text('Switch App Theme'),
-        ),
-      ],
-    );
-  }
-
-  // Settings tab
-  Column settingsTab() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // Theme control
-        Text('Switch Theme', style: TextStyle(fontSize: 18)),
-        Switch(
-          // switch on == dark mode on
-          value: darkMode,
-          onChanged: (value) {
-            _changeTheme();
-          },
         ),
       ],
     );
