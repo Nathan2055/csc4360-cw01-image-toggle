@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 // Main method
 void main() {
-  runApp(myApp());
+  runApp(const MyApp());
 }
 
 // App constructor
-class myApp extends StatefulWidget {
-  const myApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<myApp> createState() => _myAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _myAppState extends State<myApp> {
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   // Theme control variables
   ThemeMode _themeMode = ThemeMode.light;
   bool darkMode = false;
@@ -24,15 +24,29 @@ class _myAppState extends State<myApp> {
   // Image toggle variable
   bool toggleImageState = false;
 
-  // State constructor
+  // Animation variables
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+
+    _controller.forward();
   }
 
-  // State destructor
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
   }
 
@@ -46,7 +60,6 @@ class _myAppState extends State<myApp> {
   // Toggle the current app theme
   void _changeTheme() {
     setState(() {
-      // if on, switch to light mode; if off, switch to dark mode
       _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
       darkMode = !darkMode;
     });
@@ -56,42 +69,38 @@ class _myAppState extends State<myApp> {
   void _toggleImage() {
     setState(() {
       toggleImageState = !toggleImageState;
+      _controller.reset();
+      _controller.forward();
     });
   }
 
   // Get the currently selected image
-  Image getImage() {
-    double scaleFactor = 2.5; // resize images down by this factor
+  Widget getImage() {
+    double scaleFactor = 2.5;
     double imageWidth = 500.0 / scaleFactor;
     double imageHeight = 600.0 / scaleFactor;
 
-    if (toggleImageState) {
-      return Image.asset(
-        'images/dog-500x600.jpg',
+    return FadeTransition(
+      opacity: _animation,
+      child: Image.asset(
+        toggleImageState
+            ? 'images/dog-500x600.jpg'
+            : 'images/cat-500x600.jpg',
         width: imageWidth,
         height: imageHeight,
-      );
-    } else {
-      return Image.asset(
-        'images/cat-500x600.jpg',
-        width: imageWidth,
-        height: imageHeight,
-      );
-    }
+      ),
+    );
   }
 
-  // Interface constructor
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Theme settings
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
-
       home: Scaffold(
-        appBar: AppBar(title: Text('My App')),
+        appBar: AppBar(title: const Text('My App')),
         body: Center(child: homeTab()),
       ),
     );
@@ -103,27 +112,27 @@ class _myAppState extends State<myApp> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Part 1: Counter
-        Text(
+        const Text(
           'You have pushed the button this many times:',
           style: TextStyle(fontSize: 16),
         ),
-        SizedBox(height: 8.0),
-        Text('$counterCount', style: TextStyle(fontSize: 20.0)),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
+        Text('$counterCount', style: const TextStyle(fontSize: 20.0)),
+        const SizedBox(height: 8.0),
         ElevatedButton(
           onPressed: _incrementCounter,
-          child: Text('Push The Button!'),
+          child: const Text('Push The Button!'),
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
 
         // Part 2: Image Toggle
         getImage(),
-        SizedBox(height: 8.0),
-        ElevatedButton(onPressed: _toggleImage, child: Text('Switch Image')),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
+        ElevatedButton(onPressed: _toggleImage, child: const Text('Switch Image')),
+        const SizedBox(height: 8.0),
         ElevatedButton(
           onPressed: _changeTheme,
-          child: Text('Switch App Theme'),
+          child: const Text('Switch App Theme'),
         ),
       ],
     );
