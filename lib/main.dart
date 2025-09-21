@@ -15,12 +15,6 @@ class _RunMyAppState extends State<RunMyApp> {
   ThemeMode _themeMode = ThemeMode.light;
   bool darkMode = false;
 
-  Color lightModeBackground = Colors.blueGrey;
-  Color darkModeBackground = Colors.black;
-
-  Color lightModeShape = Colors.grey;
-  Color darkModeShape = Colors.white;
-
   void changeTheme(ThemeMode themeMode) {
     setState(() {
       _themeMode = themeMode;
@@ -61,34 +55,6 @@ class _RunMyAppState extends State<RunMyApp> {
                       'Mobile App Development Testing',
                       style: TextStyle(fontSize: 18),
                     ),
-
-                    /*
-                    // add some extra spacing
-                    Text(' ', style: TextStyle(fontSize: 9)),
-
-                    PhysicalShape(
-                      elevation: 5.0,
-                      clipper: ShapeBorderClipper(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      color: darkMode ? darkModeShape : lightModeShape,
-                      child: const SizedBox(
-                        height: 100.0,
-                        width: 300.0,
-                        child: Center(
-                          child: Text(
-                            'Mobile App Development Testing',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    */
                   ],
                 ),
 
