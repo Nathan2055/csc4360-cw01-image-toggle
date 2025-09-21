@@ -101,6 +101,10 @@ class myApp extends StatefulWidget {
 }
 
 class _myAppState extends State<myApp> {
+  // Theme control variables
+  ThemeMode _themeMode = ThemeMode.light;
+  bool darkMode = false;
+
   // State constructor
   @override
   void initState() {
@@ -117,13 +121,52 @@ class _myAppState extends State<myApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My App')),
+      appBar: AppBar(
+        title: Text('My App'),
+        bottom: const TabBar(
+          tabs: [
+            Tab(icon: Icon(Icons.home)),
+            Tab(icon: Icon(Icons.settings)),
+          ],
+        ),
+      ),
       body: Center(child: getMainInterface()),
     );
   }
 
   // Main app interface
-  Container getMainInterface() {
-    return Container();
+  TabBarView getMainInterface() {
+    return TabBarView(children: [homeTab(), settingsTab()]);
+  }
+
+  Column homeTab() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('Mobile App Development Testing', style: TextStyle(fontSize: 18)),
+      ],
+    );
+  }
+
+  // Settings tab
+  Column settingsTab() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // Theme control
+        Text('Switch Theme', style: TextStyle(fontSize: 18)),
+        Switch(
+          // switch on == dark mode on
+          value: darkMode,
+          onChanged: (value) {
+            setState(() {
+              // if on, switch to light mode; if off, switch to dark mode
+              _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
+              darkMode = !darkMode;
+            });
+          },
+        ),
+      ],
+    );
   }
 }
