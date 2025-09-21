@@ -89,69 +89,41 @@ class _RunMyAppState extends State<RunMyApp> {
   }
 }
 
+// Main method
 void main() {
-  runApp(MaterialApp(home: DigitalPetApp()));
+  runApp(MaterialApp(home: myApp()));
 }
 
-class DigitalPetApp extends StatefulWidget {
+// App constructor
+class myApp extends StatefulWidget {
   @override
-  _DigitalPetAppState createState() => _DigitalPetAppState();
+  _myAppState createState() => _myAppState();
 }
 
-class _DigitalPetAppState extends State<DigitalPetApp> {
-  String petName = '';
-  String petNameTemp = '';
-  int happinessLevel = 50;
-  int hungerLevel = 50;
-  late TextEditingController _controller; // controller for text field
-  Timer? _hungerTimer;
-  Timer? _winTimer;
-  int winReached = 0;
-
-  // Dropdown menu control variables
-  final TextEditingController iconController = TextEditingController();
-  IconLabel? selectedIcon;
-
+class _myAppState extends State<myApp> {
+  // State constructor
   @override
   void initState() {
     super.initState();
-
-    // Initialize controller for the text field
-    _controller = TextEditingController();
-
-    // Start a timer that runs every 30 seconds
-    _hungerTimer = Timer.periodic(Duration(seconds: 30), (timer) {
-      setState(() {
-        hungerLevel += 5; // Increase hunger
-
-        // Cap hunger at 100
-        if (hungerLevel >= 100) {
-          hungerLevel = 100;
-        }
-      });
-    });
-
-    // Start a timer to check for the win state
-    _winTimer = Timer.periodic(Duration(seconds: 180), (timer) {
-      setState(() {
-        if (happinessLevel >= 80) {
-          winReached = 1;
-        }
-      });
-    });
   }
 
+  // State destructor
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
+  // Interface constructor
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Digital Pet')),
-      body: Center(child: getInterface()),
+      appBar: AppBar(title: Text('My App')),
+      body: Center(child: getMainInterface()),
     );
+  }
+
+  // Main app interface
+  Container getMainInterface() {
+    return Container();
   }
 }
