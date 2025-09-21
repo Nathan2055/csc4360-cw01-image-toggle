@@ -53,18 +53,21 @@ class _myAppState extends State<myApp> {
       debugShowCheckedModeBanner: false,
 
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             title: Text('My App'),
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.home)),
+                Tab(icon: Icon(Icons.image)),
                 Tab(icon: Icon(Icons.settings)),
               ],
             ),
           ),
-          body: Center(child: TabBarView(children: [homeTab(), settingsTab()])),
+          body: Center(
+            child: TabBarView(children: [homeTab(), imageTab(), settingsTab()]),
+          ),
         ),
       ),
     );
@@ -85,6 +88,19 @@ class _myAppState extends State<myApp> {
         ElevatedButton(
           onPressed: _incrementCounter,
           child: Text('Push The Button!'),
+        ),
+      ],
+    );
+  }
+
+  // Tab for Part 2: Image Toggle
+  Column imageTab() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Image toggle interface will go here',
+          style: TextStyle(fontSize: 16),
         ),
       ],
     );
