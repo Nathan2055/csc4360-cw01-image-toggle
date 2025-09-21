@@ -36,9 +36,19 @@ class _myAppState extends State<myApp> {
     super.dispose();
   }
 
+  // Increment the counter by one
   void _incrementCounter() {
     setState(() {
       counterCount += 1;
+    });
+  }
+
+  // Toggle the current app theme
+  void _changeTheme() {
+    setState(() {
+      // if on, switch to light mode; if off, switch to dark mode
+      _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
+      darkMode = !darkMode;
     });
   }
 
@@ -117,11 +127,7 @@ class _myAppState extends State<myApp> {
           // switch on == dark mode on
           value: darkMode,
           onChanged: (value) {
-            setState(() {
-              // if on, switch to light mode; if off, switch to dark mode
-              _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
-              darkMode = !darkMode;
-            });
+            _changeTheme();
           },
         ),
       ],
