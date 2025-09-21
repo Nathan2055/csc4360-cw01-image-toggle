@@ -21,6 +21,9 @@ class _myAppState extends State<myApp> {
   ThemeMode _themeMode = ThemeMode.light;
   bool darkMode = false;
 
+  // Counter variable
+  int counterCount = 0;
+
   // State constructor
   @override
   void initState() {
@@ -31,6 +34,12 @@ class _myAppState extends State<myApp> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      counterCount += 1;
+    });
   }
 
   // Interface constructor
@@ -61,11 +70,19 @@ class _myAppState extends State<myApp> {
     );
   }
 
+  // Tab for Part 1: Counter
   Column homeTab() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Mobile App Development Testing', style: TextStyle(fontSize: 18)),
+        Text(
+          'You have pushed the button this many times:',
+          style: TextStyle(fontSize: 16),
+        ),
+        SizedBox(height: 8.0),
+        Text('$counterCount', style: TextStyle(fontSize: 20.0)),
+        SizedBox(height: 8.0),
+        ElevatedButton(onPressed: _incrementCounter, child: Text('Click Here')),
       ],
     );
   }
